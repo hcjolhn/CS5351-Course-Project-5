@@ -13,7 +13,7 @@ def capture_network(dest_url: str) -> Optional[NetworkTraffic]:
     time.sleep(6)
 
     for res in driver.requests:
-        if res.url.__contains__(dest_url):
+        if dest_url in res.url:
             return NetworkTraffic(res)
 
     driver.quit()
