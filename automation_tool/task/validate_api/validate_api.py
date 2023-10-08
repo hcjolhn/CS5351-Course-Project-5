@@ -15,11 +15,6 @@ def capture_network(dest_url: str) -> Optional[NetworkTraffic]:
     for res in driver.requests:
         if res.url.__contains__(dest_url):
             return NetworkTraffic(res)
-            # if 'application/json' == res.response.headers.get_content_type():
-            #     print(res.url)
-            #     print('res.body')
-            #     body = sw_decode(res.response.body, res.response.headers.get('Content-Encoding', 'identity')).decode(
-            #         "utf8")
-            #     body_json = eval(body)
-            #     print(body_json)
+
+    driver.quit()
     return None
