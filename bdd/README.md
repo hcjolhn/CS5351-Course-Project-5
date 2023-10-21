@@ -30,6 +30,6 @@ To run the the test scenario using the given tag name from all the present featu
 
 
 To Generate the HTML Report:
-
-allure generate Report_Json -o Report_Html --clean
+1. Go to allure-2.24.1\bin directory
+2. Run command: allure generate ../../Report_Json -o ../../Report_Html --clean
 
