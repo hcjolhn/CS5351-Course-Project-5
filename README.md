@@ -24,6 +24,7 @@ docker run -d -e MYSQL_ROOT_PASSWORD=<password> -e MYSQL_DATABASE=db --name mysq
 ### Steps
 1. pip install -r requirement.txt
 2. Run commands:
+ 
   To run all the present feature files: behave Feature -f allure_behave.formatter:AllureFormatter -o Report_Json
 
   To run a single feature file: behave Features/Test.feature -f allure_behave.formatter:AllureFormatter -o Report_Json
