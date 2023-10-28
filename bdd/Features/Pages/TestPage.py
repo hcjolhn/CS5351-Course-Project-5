@@ -35,3 +35,17 @@ class TestPage (BasePage):
                 Input = self.driver.find_element(By.XPATH, self.message_xpath)
         Input.send_keys(input)
         time.sleep(3)
+    
+    def inputValidation(self,input,field):
+        print(input)
+        match field:
+            case "name":
+                Input = self.driver.find_element(By.XPATH, self.name_xpath)
+            case "email":
+                Input = self.driver.find_element(By.XPATH, self.email_xpath)
+            case "message":
+                Input = self.driver.find_element(By.XPATH, self.message_xpath)
+        Input.send_keys(input)
+        ele = self.driver.find_element(By.CSS_SELECTOR,".input-fields-container .input-validate-error")
+        self.assertEqual(ele.text,"Please input correct name")
+        time.sleep(3)

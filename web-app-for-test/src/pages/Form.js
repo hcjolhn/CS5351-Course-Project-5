@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 const Form =() =>{
     const [forms, setFormList] = useState([]);
     const [loading, setLoading] = useState(false);
+    
     useEffect(() =>{
         setLoading(true);
         fetch("http://localhost:8000/forms",{method:"GET"})
@@ -10,6 +11,11 @@ const Form =() =>{
             .then(data => {
                 console.log(data)
                 setFormList(data);
+            })
+            .catch((e)=>{
+                console.debug(e);
+            })
+            .finally(()=>{
                 setLoading(false);
             })
     }, [])
