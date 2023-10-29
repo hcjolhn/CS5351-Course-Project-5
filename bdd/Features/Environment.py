@@ -24,8 +24,7 @@ def before_scenario(context, scenario):
             context.driver = webdriver.Firefox()
         case "Edge":
             context.driver = webdriver.Edge()
-        case "IE":
-            context.driver = webdriver.Ie()
+
     time.sleep(5)
     basepage = BasePage(context.driver)
     context.testpage = TestPage(basepage)
