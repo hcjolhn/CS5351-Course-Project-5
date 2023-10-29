@@ -1,6 +1,6 @@
 Feature: Create test cases using Selenium
 
-@browser:Chrome
+@test_Chrome
 Scenario Outline: Create a record with Chrome
     Given: I Click on Create button
     And: I Enter a "<Name>" in Name field
@@ -9,9 +9,9 @@ Scenario Outline: Create a record with Chrome
     And: I Click on Submit button
  Examples:
     |Name|Email|Message|
-    |Test|test@g.com|awefawefawefbrowser:chrome|
+    |Test|test@g.com|awefawefawefbrowserchrome|
     
-@browser:Firefox
+@test_FireFox
 Scenario Outline: Create a record with Firefox
     Given: I Click on Create button
     And: I Enter a "<Name>" in Name field
@@ -20,9 +20,9 @@ Scenario Outline: Create a record with Firefox
     And: I Click on Submit button
  Examples:
     |Name|Email|Message|
-    |Test|test@g.com|awefawefawefbrowser:firefox|
+    |Test|test@g.com|awefawefawefbrowserfirefox|
     
-@browser:Edge
+@test_Edge
 Scenario Outline: Create a record with Edge
     Given: I Click on Create button
     And: I Enter a "<Name>" in Name field
@@ -31,9 +31,9 @@ Scenario Outline: Create a record with Edge
     And: I Click on Submit button
  Examples:
     |Name|Email|Message|
-    |Test|test@g.com|awefawefawefbrowser:edge|
+    |Test|test@g.com|awefawefawefbrowseredge|
     
-@browser:IE
+@test_IE
 Scenario Outline: Create a record with IE
     Given: I Click on Create button
     And: I Enter a "<Name>" in Name field
@@ -42,4 +42,4 @@ Scenario Outline: Create a record with IE
     And: I Click on Submit button
  Examples:
     |Name|Email|Message|
-    |Test|test@g.com|awefawefawefbrowser:IE|
+    |Test|test@g.com|awefawefawefbrowserIE|
