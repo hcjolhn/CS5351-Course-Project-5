@@ -1,14 +1,16 @@
 import json
 import time
 
+from browsermobproxy import Server
 from allure_commons._allure import attach
 from allure_commons.types import AttachmentType
-from selenium import webdriver
+from seleniumwire import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.firefox import GeckoDriverManager
 from webdriver_manager.microsoft import EdgeChromiumDriverManager, IEDriverManager
 from Pages.BasePage import BasePage
 from Pages.TestPage import TestPage
+from selenium.webdriver.common.proxy import Proxy, ProxyType
 
 data = json.load(open("Resources/config.json"))
 
@@ -29,6 +31,7 @@ def before_scenario(context, scenario):
     time.sleep(5)
     basepage = BasePage(context.driver)
     context.testpage = TestPage(basepage)
+
     context.stepid = 1
     if "api" not in tag:
         context.driver.get(data['WEBURL'])
