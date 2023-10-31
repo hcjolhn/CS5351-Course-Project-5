@@ -35,3 +35,6 @@ class TestPage (BasePage):
                 Input = self.driver.find_element(By.XPATH, self.message_xpath)
         Input.send_keys(input)
         time.sleep(3)
+
+    def me(self):
+        print("hihi")

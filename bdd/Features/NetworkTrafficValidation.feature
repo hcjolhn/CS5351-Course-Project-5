@@ -1,10 +1,13 @@
 Feature: Create test cases using Selenium
 
-  @validate_network_request_call
-  Scenario Outline: Validate network request call
-      Given : Validate network request call
-      And : Check "<API>" is called
-      And : Check "<HttpProtocol>" is used
+  @test_Chrome
+  Scenario Outline: Validate network traffic
+#      Given : I want to validate the network traffic
+      Given : I Click on Create button
+      And : I Enter a "<Name>" in Name field
+      And : I Enter a "<Email>" in Email field
+      And : I Enter a "<Message>" in Message field
+      And : I Click on Submit button
    Examples:
-      |API|HttpProtocol|
-      |http://localhost:8000/forms|POST|
+      |Name|Email|Message|
+      |Test|test@g.com|awefawefawefbrowserchrome|

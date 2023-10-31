@@ -2,15 +2,13 @@ import json
 import time
 from allure_commons._allure import attach
 from allure_commons.types import AttachmentType
-from browsermobproxy import Server
+
 from seleniumwire import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.firefox import GeckoDriverManager
-from webdriver_manager.microsoft import EdgeChromiumDriverManager, IEDriverManager
+
 
 from Pages.BasePage import BasePage
 from Pages.TestPage import TestPage
-
+from selenium.webdriver.chrome.options import Options
 data = json.load(open("Resources/config.json"))
 
 
@@ -20,7 +18,12 @@ def before_scenario(context, scenario):
     print(browserVersion)
     match browserVersion:
         case "Chrome":
-            context.driver = webdriver.Chrome()
+            chrome_options = Options()
+            chrome_options.add_argument('--ignore-certificate-errors')
+            chrome_options.add_argument('--allow-running-insecure-content')
+            chrome_options.add_argument('--disable-web-security')
+
+            context.driver = webdriver.Chrome(options=chrome_options)
         case "FireFox":
             context.driver = webdriver.Firefox()
         case "Edge":
@@ -41,12 +44,13 @@ def before_scenario(context, scenario):
         context.driver.maximize_window()
         context.driver.implicitly_wait(3)
 
-
 def after_step(context, step):
+    print("hi")
     attach(context.driver.get_screenshot_as_png(), name=context.stepid, attachment_type=AttachmentType.PNG)
     context.stepid = context.stepid + 1
 
 
 def after_scenario(context, scenario):
     print("After scenario", scenario)
+    print(context.table)
     context.driver.close()
