@@ -1,0 +1,9 @@
+Feature: Create test cases using Selenium
+
+  @test_Chrome
+  Scenario Outline: Create a record with me
+      Given : I Click on Me button
+      And : I Enter a "<Name>" in Me field
+   Examples:
+      |Name|
+      |Test|
