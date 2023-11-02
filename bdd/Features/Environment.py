@@ -2,9 +2,7 @@ import json
 import time
 from allure_commons._allure import attach
 from allure_commons.types import AttachmentType
-
 from seleniumwire import webdriver
-
 
 from Pages.BasePage import BasePage
 from Pages.TestPage import TestPage
@@ -45,7 +43,6 @@ def before_scenario(context, scenario):
         context.driver.implicitly_wait(3)
 
 def after_step(context, step):
-    print("hi")
     attach(context.driver.get_screenshot_as_png(), name=context.stepid, attachment_type=AttachmentType.PNG)
     context.stepid = context.stepid + 1
 
