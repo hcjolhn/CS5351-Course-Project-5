@@ -1,0 +1,6 @@
+selenium>=4.13.0
+allure-behave
+allure-python-commons
+behave
+webdriver-manager
+selenium-wire
