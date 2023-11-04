@@ -9,9 +9,7 @@ const FormInput =() =>{
     const [loading, setLoading] = useState(false);
     const [id, setId] = useState(new URLSearchParams(useLocation().search).get('id'));
     const [errorMsg,setErrorMsg] = useState({});
-    const [formSubmitErrMsg,setFormSubmitErrMsg] = useState("");
-
-    console.log(errorMsg);
+    // const [formSubmitErrMsg,setFormSubmitErrMsg] = useState("");
 
     const handleChange = (event) => {
         const { name, value } = event.target;
