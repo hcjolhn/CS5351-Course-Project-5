@@ -1,6 +1,8 @@
 from selenium.webdriver.common.by import By
 import time
 from Features.Pages.BasePage import BasePage
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 class TestPage (BasePage):
@@ -34,16 +36,10 @@ class TestPage (BasePage):
         Input.send_keys(input)
         time.sleep(3)
     
-    def inputValidation(self,input,field):
-        print(input)
-        match field:
-            case "name":
-                Input = self.driver.find_element(By.XPATH, self.name_xpath)
-            case "email":
-                Input = self.driver.find_element(By.XPATH, self.email_xpath)
-            case "message":
-                Input = self.driver.find_element(By.XPATH, self.message_xpath)
-        Input.send_keys(input)
-        ele = self.driver.find_element(By.CSS_SELECTOR,".input-fields-container .input-validate-error")
-        self.assertEqual(ele.text,"Please input correct name")
+    def inputValidation(self,field):
+        # do onblur to trigger error message
+        self.driver.find_element(By.CSS_SELECTOR,".input-fields-container").click()
+        ele = self.driver.find_element(By.CSS_SELECTOR,"input[name='%s'] + .input-validate-error" % field)
+        print(ele.text)
+        assert(ele.text == "Please input correct "+field)
         time.sleep(3)

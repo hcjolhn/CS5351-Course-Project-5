@@ -5,7 +5,7 @@ const Form =() =>{
     const [loading, setLoading] = useState(false);
     
     useEffect(() =>{
-        setLoading(true);
+        //setLoading(true);
         fetch("http://localhost:8000/forms",{method:"GET"})
             .then(response => response.json())
             .then(data => {

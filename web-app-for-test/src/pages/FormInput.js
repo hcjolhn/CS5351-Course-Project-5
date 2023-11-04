@@ -123,7 +123,7 @@ const FormInput =() =>{
         <form onSubmit={handleSubmit}>
         <div className={`input-fields-container${errorMsg.name?" is-error":""}`}>
             <label htmlFor="name">Name:</label><br/>
-            <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} onBlur={handleOnBlur}/><br/>
+            <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} onBlur={handleOnBlur}/>
             {errorMsg.name && 
             <>
                  <span className="input-validate-error">{errorMsg.name}</span><br/>
@@ -132,7 +132,7 @@ const FormInput =() =>{
         </div>
         <div className={`input-fields-container${errorMsg.email?" is-error":""}`}>
         <label htmlFor="email">Email:</label><br/>
-        <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} onBlur={handleOnBlur}/><br/>
+        <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} onBlur={handleOnBlur}/>
         {errorMsg.email && 
             <>
                  <span className="input-validate-error">{errorMsg.email}</span><br/>
@@ -141,9 +141,15 @@ const FormInput =() =>{
         </div>
 
         <label htmlFor="message">Message:</label><br/>
-        <textarea id="message" name="message" value={formData.message} onChange={handleChange} onBlur={handleOnBlur}/><br/>
-
-        <button type="submit">Submit</button>
+        <textarea id="message" name="message" value={formData.message} onChange={handleChange} onBlur={handleOnBlur}/>
+        <div>
+            <button className="submit-button" type="submit">Submit</button>
+        </div>
+        {errorMsg.submit && 
+            <>
+                 <span className="input-validate-error">{errorMsg.submit}</span><br/>
+            </>
+            }
         </form>
         {submitted && (
             <div>
