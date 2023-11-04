@@ -15,13 +15,11 @@ class TestPage (BasePage):
 
     def createbtn_click(self):
         Createbtn = self.driver.find_element(By.XPATH, self.createbtn_xpath)
-        print("clicked on create btn")
         Createbtn.click()
         time.sleep(3)
 
     def submitbtn_click(self):
         Submitbtn = self.driver.find_element(By.XPATH, self.submitbtn_xpath)
-        print("clicked on submit btn")
         Submitbtn.click()
         time.sleep(3)
 

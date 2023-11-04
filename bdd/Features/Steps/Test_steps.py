@@ -12,6 +12,7 @@ def step_impl(context):
 
 @step(': I Enter a "(?P<Name>.+)" in Name field')
 def step_impl(context, Name):
+    context.yoyo = "hi"
     context.testpage.input(Name,"name")
 
 @step(': I Enter a "(?P<Email>.+)" in Email field')
