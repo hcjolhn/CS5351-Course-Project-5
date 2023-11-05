@@ -56,7 +56,3 @@ def step_impl(context, order, Name, Email, Message):
 @step(': Check the new input "(?P<Name>.+)", "(?P<Email>.+)", "(?P<Message>.+)"')
 def step_impl(context, Name, Email, Message):
     context.testpage.check_new_input(Name, Email, Message)
-
-@step(': I wait sometime')
-def step_impl(context):
-    context.testpage.wait()
