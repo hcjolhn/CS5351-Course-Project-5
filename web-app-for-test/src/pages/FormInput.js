@@ -1,15 +1,60 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useLocation, Link } from "react-router-dom";
+import { validateEmail, validateName } from "../utils/validation-helper";
+import "./FormInput.css";
+
 const FormInput =() =>{
     const [formData, setFormData] = useState({name: "",email: "",message: ""});
     const [submitted, setSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
     const [id, setId] = useState(new URLSearchParams(useLocation().search).get('id'));
+    const [errorMsg,setErrorMsg] = useState({});
+    // const [formSubmitErrMsg,setFormSubmitErrMsg] = useState("");
 
     const handleChange = (event) => {
         const { name, value } = event.target;
+        if(errorMsg[name] && errorMsg[name] !== ""){
+            setErrorMsg({
+                ...errorMsg,
+                [name]: ""
+            })
+        }
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
     };
+
+    const validate = useCallback(()=>{
+        if(Object.keys(errorMsg).length > 0 || Object.keys(formData).some((key)=>formData[key] === "")){
+            return false;
+        }
+        return true;
+    },[formData,errorMsg])
+
+    const handleOnBlur = useCallback((e) => {
+        const { name, value } = e.target;
+        const message = `Please input correct ${name}`;
+        switch(name){
+            case "name":
+                if(!validateName(value)){
+                    setErrorMsg({
+                        ...errorMsg,
+                        [name]: message
+                    })
+                    return;
+                }
+                break;
+            case "email":
+                if(!validateEmail(value)){
+                    setErrorMsg({
+                        ...errorMsg,
+                        [name]: message
+                    })
+                    return;
+                }
+                break;
+            default:
+                break;
+        }
+    },[errorMsg])
 
     useEffect(() =>{
         if(id){
@@ -29,6 +74,10 @@ const FormInput =() =>{
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        if(!validate()){
+            alert("Please make sure you fill in the correct information and submit again.")
+            return;
+        }
         if(id){
             await fetch("http://localhost:8000/forms/"+id,
             {method:"PATCH",
@@ -68,18 +117,37 @@ const FormInput =() =>{
 
     return (
 
-        <div>
+        <div className="form-input-container">
         <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label><br/>
-        <input type="text" id="name" name="name" value={formData.name} onChange={handleChange}/><br/>
-
+        <div className={`input-fields-container${errorMsg.name?" is-error":""}`}>
+            <label htmlFor="name">Name:</label><br/>
+            <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} onBlur={handleOnBlur}/>
+            {errorMsg.name && 
+            <>
+                 <span className="input-validate-error">{errorMsg.name}</span><br/>
+            </>
+            }
+        </div>
+        <div className={`input-fields-container${errorMsg.email?" is-error":""}`}>
         <label htmlFor="email">Email:</label><br/>
-        <input type="email" id="email" name="email" value={formData.email} onChange={handleChange}/><br/>
+        <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} onBlur={handleOnBlur}/>
+        {errorMsg.email && 
+            <>
+                 <span className="input-validate-error">{errorMsg.email}</span><br/>
+            </>
+            }
+        </div>
 
         <label htmlFor="message">Message:</label><br/>
-        <textarea id="message" name="message" value={formData.message} onChange={handleChange}/><br/>
-
-        <button type="submit">Submit</button>
+        <textarea id="message" name="message" value={formData.message} onChange={handleChange} onBlur={handleOnBlur}/>
+        <div>
+            <button className="submit-button" type="submit">Submit</button>
+        </div>
+        {errorMsg.submit && 
+            <>
+                 <span className="input-validate-error">{errorMsg.submit}</span><br/>
+            </>
+            }
         </form>
         {submitted && (
             <div>
