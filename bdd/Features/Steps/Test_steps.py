@@ -10,18 +10,6 @@ def step_impl(context):
 def step_impl(context):
     context.testpage.submitbtn_click()
 
-@given(': I Click on Edit button with the "(?P<order>.+)"-th row')
-def step_impl(context, order):
-    context.testpage.editbtn_click(order)
-
-@step(': I Click on Delete button with the "(?P<order>.+)"-th row')
-def step_impl(context, order):
-    context.testpage.delbtn_click(order)
-
-@step(': I Click on Back button')
-def step_impl(context):
-    context.testpage.backbtn_click()
-
 @step(': I Enter a "(?P<Name>.+)" in Name field')
 def step_impl(context, Name):
     context.yoyo = "hi"
@@ -36,6 +24,18 @@ def step_impl(context, Email):
 @step(': I Enter a "(?P<Message>.+)" in Message field')
 def step_impl(context, Message):
     context.testpage.input(Message,"message")
+
+@given(': I Click on Edit button with the "(?P<order>.+)"-th row')
+def step_impl(context, order):
+    context.testpage.editbtn_click(order)
+
+@step(': I Click on Delete button with the "(?P<order>.+)"-th row')
+def step_impl(context, order):
+    context.testpage.delbtn_click(order)
+
+@step(': I Click on Back button')
+def step_impl(context):
+    context.testpage.backbtn_click()
 
 @step(': I Clear Name field')
 def step_impl(context):
