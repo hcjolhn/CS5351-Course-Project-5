@@ -32,6 +32,25 @@ class TestPage (BasePage):
         Submitbtn = self.driver.find_element(By.XPATH, self.submitbtn_xpath)
         Submitbtn.click()
         time.sleep(3)
+    
+    def input(self, input, field):
+        match field:
+            case "name":
+                Input = self.driver.find_element(By.XPATH, self.name_xpath)
+            case "email":
+                Input = self.driver.find_element(By.XPATH, self.email_xpath)
+            case "message":
+                Input = self.driver.find_element(By.XPATH, self.message_xpath)
+        Input.send_keys(input)
+        time.sleep(3)
+    
+    def inputValidation(self,field):
+        # do onblur to trigger error message
+        self.driver.find_element(By.CSS_SELECTOR,".input-fields-container").click()
+        ele = self.driver.find_element(By.CSS_SELECTOR,"input[name='%s'] + .input-validate-error" % field)
+        print(ele.text)
+        assert(ele.text == "Please input correct "+field)
+        time.sleep(3)
 
     def editbtn_click(self, order):
         try:
@@ -61,7 +80,6 @@ class TestPage (BasePage):
 
         rows = table.find_elements(By.TAG_NAME, "tr")
         original_len = len(rows)
-        print(f"original_len: {original_len}")
 
         if len(rows) > 1:
             try:
@@ -71,42 +89,22 @@ class TestPage (BasePage):
             cells = row.find_elements(By.TAG_NAME, "td")
             Delbtn = cells[self.DEL_BTN_INDEX]
             Delbtn.click()
+
             time.sleep(3)
+
             new_table = self.driver.find_element(By.XPATH, self.table_xpath)
             new_rows = new_table.find_elements(By.TAG_NAME, "tr")
-            print(f"new_rows: {len(new_rows)}")
-            if len(new_rows) + 1 == original_len:
-                pass
-            else:
+            
+            if len(new_rows) + 1 != original_len:
                 assert False, f"The {order}-th row have not deleted. delbtn_click failed."
         else:
             assert False, f"Empty Table. delbtn_click failed."
 
     def backbtn_click(self):
         Backbtn = self.driver.find_element(By.XPATH, self.backbtn_xpath)
-        print("clicked on back btn")
         Backbtn.click()
         time.sleep(3)
     
-    def input(self, input, field):
-        match field:
-            case "name":
-                Input = self.driver.find_element(By.XPATH, self.name_xpath)
-            case "email":
-                Input = self.driver.find_element(By.XPATH, self.email_xpath)
-            case "message":
-                Input = self.driver.find_element(By.XPATH, self.message_xpath)
-        Input.send_keys(input)
-        time.sleep(3)
-    
-    def inputValidation(self,field):
-        # do onblur to trigger error message
-        self.driver.find_element(By.CSS_SELECTOR,".input-fields-container").click()
-        ele = self.driver.find_element(By.CSS_SELECTOR,"input[name='%s'] + .input-validate-error" % field)
-        print(ele.text)
-        assert(ele.text == "Please input correct "+field)
-        time.sleep(3)
-
     def clear(self, field):
         match field:
             case "name":
@@ -162,5 +160,3 @@ class TestPage (BasePage):
         else:
             assert False, "There is no data in the table. check_new_input failed."
 
-    def wait(self):
-        time.sleep(3)
