@@ -6,7 +6,7 @@ Feature: Create test cases using Selenium
       And : I Enter a "<Name>" in Name field and validate
       And : I Enter a "<Email>" in Email field and validate
       And : I Enter a "<Message>" in Message field
-      And : I Click on Submit button
+      And : I Click on Submit button with error
    Examples:
       |Name|Email|Message|
       |123|testg.com|awefawefawefbrowserchrome|

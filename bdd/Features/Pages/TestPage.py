@@ -48,7 +48,6 @@ class TestPage (BasePage):
         # do onblur to trigger error message
         self.driver.find_element(By.CSS_SELECTOR,".input-fields-container").click()
         ele = self.driver.find_element(By.CSS_SELECTOR,"input[name='%s'] + .input-validate-error" % field)
-        print(ele.text)
         assert(ele.text == "Please input correct "+field)
         time.sleep(3)
 
@@ -160,3 +159,10 @@ class TestPage (BasePage):
         else:
             assert False, "There is no data in the table. check_new_input failed."
 
+    
+    def submitValidation(self):
+        Submitbtn = self.driver.find_element(By.XPATH, self.submitbtn_xpath)
+        Submitbtn.click()
+        time.sleep(3)
+        ele = self.driver.find_element(By.CSS_SELECTOR,".form-submit-err-msg-container > span")
+        assert(ele.text == "Please make sure you fill in the correct information and submit again.")

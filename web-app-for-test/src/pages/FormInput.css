@@ -52,3 +52,7 @@
     color: #fff;
     background-color: #4096ff;
 }
+
+.form-err-msg{
+    margin-top:1rem;
+}
