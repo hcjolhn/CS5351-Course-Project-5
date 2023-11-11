@@ -14,4 +14,4 @@ def step_impl(context, Email):
 
 @step(": I Click on Submit button with error")
 def step_impl(context):
-    context.testpage.submitbtn_click()
+    context.testpage.submitValidation()

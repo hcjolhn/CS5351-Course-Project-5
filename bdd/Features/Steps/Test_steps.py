@@ -14,9 +14,18 @@ def step_impl(context):
 def step_impl(context, Name):
     context.yoyo = "hi"
     context.testpage.input(Name,"name")
+
+@step(': I Enter a error "(?P<Name>.+)" in Name field')
+def step_impl(context, Name):
+    context.yoyo = "hi"
+    context.testpage.input(Name,"name")
     context.testpage.inputValidation("name")
 
 @step(': I Enter a "(?P<Email>.+)" in Email field')
+def step_impl(context, Email):
+    context.testpage.input(Email,"email")
+
+@step(': I Enter a error "(?P<Email>.+)" in Email field')
 def step_impl(context, Email):
     context.testpage.input(Email,"email")
     context.testpage.inputValidation("email")
