@@ -9,7 +9,7 @@ const FormInput =() =>{
     const [loading, setLoading] = useState(false);
     const [id, setId] = useState(new URLSearchParams(useLocation().search).get('id'));
     const [errorMsg,setErrorMsg] = useState({});
-    // const [formSubmitErrMsg,setFormSubmitErrMsg] = useState("");
+    const [formSubmitErrMsg,setFormSubmitErrMsg] = useState("");
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -19,6 +19,9 @@ const FormInput =() =>{
                 [name]: ""
             })
         }
+        if(formSubmitErrMsg && formSubmitErrMsg !== ""){
+            setFormSubmitErrMsg("");
+        }   
         setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
     };
 
@@ -75,7 +78,7 @@ const FormInput =() =>{
     const handleSubmit = async (event) => {
         event.preventDefault();
         if(!validate()){
-            alert("Please make sure you fill in the correct information and submit again.")
+            setFormSubmitErrMsg("Please make sure you fill in the correct information and submit again.")
             return;
         }
         if(id){
@@ -149,6 +152,11 @@ const FormInput =() =>{
             </>
             }
         </form>
+        {formSubmitErrMsg !== "" && 
+            <div className="form-submit-err-msg-container">
+                 <span className="input-validate-error form-err-msg">{formSubmitErrMsg}</span><br/>
+            </div>
+        }
         {submitted && (
             <div>
             <h2>Submitted Data:</h2>
