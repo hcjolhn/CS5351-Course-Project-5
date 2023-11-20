@@ -1,9 +1,9 @@
 import { useEffect, useState, useCallback } from "react";
 import { useLocation, Link } from "react-router-dom";
-import { validateEmail, validateName } from "../utils/validation-helper";
-import "./FormInput.css";
+import { validateEmail, validateName } from "../../utils/validation-helper";
+import "./index.css";
 
-const FormInput =() =>{
+const FormInput = () => {
     const [formData, setFormData] = useState({name: "",email: "",message: ""});
     const [submitted, setSubmitted] = useState(false);
     const [loading, setLoading] = useState(false);
