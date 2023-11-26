@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import { validateEmail, validateName } from "../../utils/validation-helper";
-import "./index.css";
+import "./index.scss";
 
 const FormInput = () => {
     const [formData, setFormData] = useState({name: "",email: "",message: ""});
@@ -10,6 +10,7 @@ const FormInput = () => {
     const [id, setId] = useState(new URLSearchParams(useLocation().search).get('id'));
     const [errorMsg,setErrorMsg] = useState({});
     const [formSubmitErrMsg,setFormSubmitErrMsg] = useState("");
+    const navigate = useNavigate();
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -119,32 +120,44 @@ const FormInput = () => {
 
 
     return (
-
+    <div>
+        <div className="welcome-container">
+            <div className="title-container">
+                    <h1>Automated Tools - Create Page</h1>
+            </div>
+        </div>
         <div className="form-input-container">
+            <h1>Create Form</h1>
         <form onSubmit={handleSubmit}>
-        <div className={`input-fields-container${errorMsg.name?" is-error":""}`}>
-            <label htmlFor="name">Name:</label><br/>
-            <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} onBlur={handleOnBlur}/>
-            {errorMsg.name && 
-            <>
-                 <span className="input-validate-error">{errorMsg.name}</span><br/>
-            </>
-            }
-        </div>
-        <div className={`input-fields-container${errorMsg.email?" is-error":""}`}>
-        <label htmlFor="email">Email:</label><br/>
-        <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} onBlur={handleOnBlur}/>
-        {errorMsg.email && 
-            <>
-                 <span className="input-validate-error">{errorMsg.email}</span><br/>
-            </>
-            }
+        <div className="form-row">
+            <div className={`input-fields-container${errorMsg.name?" is-error":""}`}>
+                <label htmlFor="name">Name:</label><br/>
+                <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} onBlur={handleOnBlur}/>
+                {errorMsg.name && 
+                <>
+                    <span className="input-validate-error">{errorMsg.name}</span><br/>
+                </>
+                }
+            </div>
+            <div className={`input-fields-container${errorMsg.email?" is-error":""}`}>
+            <label htmlFor="email">Email:</label><br/>
+            <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} onBlur={handleOnBlur}/>
+            {errorMsg.email && 
+                <>
+                    <span className="input-validate-error">{errorMsg.email}</span><br/>
+                </>
+                }
+            </div>
         </div>
 
-        <label htmlFor="message">Message:</label><br/>
-        <textarea id="message" name="message" value={formData.message} onChange={handleChange} onBlur={handleOnBlur}/>
-        <div>
-            <button className="submit-button" type="submit">Submit</button>
+        <div className="message-container">
+            <label htmlFor="message">Message:</label><br/>
+            <textarea id="message" name="message" value={formData.message} onChange={handleChange} onBlur={handleOnBlur}/>
+        </div>
+
+        <div className="button-container">
+            <button className="back-button" onClick={()=>navigate("/")}><span>Back</span></button>
+            <button className="submit-button" type="submit"><span>Submit</span></button>
         </div>
         {errorMsg.submit && 
             <>
@@ -165,8 +178,8 @@ const FormInput = () => {
             <p>Message: {formData.message}</p>
             </div>
         )}
-        <Link to="/">Back</Link>
         </div>
+    </div>
     );
 }
 

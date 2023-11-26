@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import "./index.css";
-import "./form-table.css"
+import "./index.scss";
+import "./loader.scss";
 import { mockData } from "../../data/mock-data";
+import NoDataIcon from './NoData';
 
 const Form = () =>{
     const [forms, setFormList] = useState([]);
@@ -25,7 +26,12 @@ const Form = () =>{
             })
     }, [])
     if (loading) {
-        return <p>Loading...</p>;
+        return (
+            <div className="spinner">
+                <div className="ball" />
+                <p>Loading...</p>
+            </div>
+        );
     }
     async function handleDelete(id){
         await fetch("http://localhost:8000/forms/"+id,
@@ -46,7 +52,7 @@ const Form = () =>{
         <div className="form-container">
         <div className="welcome-container">
             <div className="title-container">
-                <h2>Automated Tools - Home Page</h2>
+                <h1>Automated Tools - Home Page</h1>
                 <div style={{padding : "10px 0"}}>You can click create button here to submit the form.</div>
                 <div style={{padding : "10px 0"}}>All the submitted data will be shown below.</div>
             </div>
@@ -80,6 +86,12 @@ const Form = () =>{
                 </tr>
             ))}
             </table>
+            {
+                !forms || (forms && forms.length) === 0 && 
+                <div className="empty-table-content">
+                    <div className="no-content-container"><NoDataIcon /><div>No Data</div></div>
+                </div>
+            }
         </div>
         </>
     );
