@@ -20,7 +20,7 @@ class TestPage (BasePage):
         self.DEL_BTN_INDEX = 4 # used for find the delete button
 
         self.editbtn_xpath = f"//a[@href='/form_input/']"
-        self.backbtn_xpath = "//a[@href='/']"
+        self.backbtn_xpath = "//button[@class='back-button']"
         self.table_xpath = "//table"
 
     def createbtn_click(self):
