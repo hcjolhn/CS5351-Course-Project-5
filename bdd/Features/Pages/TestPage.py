@@ -9,8 +9,8 @@ class TestPage (BasePage):
     def __init__(self, context):
         BasePage.__init__(self, context.driver)
         self.context = context
-        self.createbtn_xpath = "//a[@href='/form_input']"
-        self.submitbtn_xpath = "//button[text()='Submit']"
+        self.createbtn_xpath = "//button[@class='create-button']"
+        self.submitbtn_xpath = "//button[@class='submit-button']"
         self.name_xpath = "//input[@name='name']"
         self.email_xpath = "//input[@name='email']"
         self.message_xpath = "//textarea[@name='message']"
@@ -24,12 +24,14 @@ class TestPage (BasePage):
         self.table_xpath = "//table"
 
     def createbtn_click(self):
+        time.sleep(3)
         Createbtn = self.driver.find_element(By.XPATH, self.createbtn_xpath)
         Createbtn.click()
         time.sleep(3)
 
     def submitbtn_click(self):
         Submitbtn = self.driver.find_element(By.XPATH, self.submitbtn_xpath)
+        print(Submitbtn)
         Submitbtn.click()
         time.sleep(3)
     
