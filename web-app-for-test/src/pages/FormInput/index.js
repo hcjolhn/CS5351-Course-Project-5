@@ -27,7 +27,7 @@ const FormInput = () => {
     };
 
     const validate = useCallback(()=>{
-        if(Object.keys(errorMsg).length > 0 || Object.keys(formData).some((key)=>formData[key] === "")){
+        if(/* Object.keys(errorMsg).length > 0 ||  */Object.keys(formData).some((key)=>formData[key] === "")){
             return false;
         }
         return true;
@@ -156,7 +156,7 @@ const FormInput = () => {
         </div>
 
         <div className="button-container">
-            <button className="back-button" onClick={()=>navigate("/")}><span>Back</span></button>
+            <Link to={"/"}><button className="back-button"><span>Back</span></button></Link>
             <button className="submit-button" type="submit"><span>Submit</span></button>
         </div>
         {errorMsg.submit && 
