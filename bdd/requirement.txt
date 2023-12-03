@@ -4,3 +4,4 @@ allure-python-commons
 behave
 webdriver-manager
 selenium-wire
+setuptools
