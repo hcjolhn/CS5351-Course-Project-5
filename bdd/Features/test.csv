@@ -1,2 +1,4 @@
 Features,Scenario,Examples
-TestCSV,Create a record with Firefox,"Name is ""Fergus"" AND Email is ""test@example.com"" AND Message is ""I'm a frog"""
+TestCSV,Chrome Test,"Name is ""Chrome"" AND Email is ""chrome@example.com"" AND Message is ""I'm a Chrome"" AND Name2 is ""Chrome2"" AND Email2 is ""chrome2@example.com"" AND Message2 is ""I'm a Chrome2"""
+TestCSV,Firefox Test,"Name is ""Firefox"" AND Email is ""firefox@example.com"" AND Message is ""I'm a Firefox"" AND Name2 is ""Firefox2"" AND Email2 is ""firefox2@example.com"" AND Message2 is ""I'm a Firefox2"""
+TestCSV,Edge Test,"Name is ""Edge"" AND Email is ""edge@example.com"" AND Message is ""I'm a Edge"" AND Name2 is ""Edge2"" AND Email2 is ""edge2@example.com"" AND Message2 is ""I'm a Edge2"""
