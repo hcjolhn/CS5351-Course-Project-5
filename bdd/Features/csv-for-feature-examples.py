@@ -7,9 +7,13 @@ def changeToObject(csvFilePath):
         csvReader = csv.DictReader(csvf)
         for rows in csvReader:
             key = rows['Features']
-            data[key] = rows
+            if not key in data:
+                data[key] = [rows]
+            else :
+                data[key].append(rows)
     return data
 
+# Update
 def changeFeatures(object):
     lineNumber = -1
     for key, value in object.items():
@@ -44,6 +48,22 @@ def changeFeatures(object):
             writeFile.writelines(list_of_lines)
             writeFile.close()
             feature.close()
+
+def createFeatures(object):
+    lineNumber = -1
+    for key, value in object.items():
+        count = 0
+        filepath = "./" + key
+        scenarioAnchor = False
+        targetList = []
+        #writeFile = open(filepath+".feature", "w")
+        for line in value:
+            print(line)
+        #writeFile.writelines("Feature: ",value["Name"])
+        #writeFile.writelines()
+        #writeFile.writelines("")
+
+        #writeFile.close()
             
 
 
@@ -53,7 +73,9 @@ def changeFeatures(object):
             
     return
 
-csvFilePath = r'test.csv'
+csvFilePath = r'test2.csv'
 
 object = changeToObject(csvFilePath)
-changeFeatures(object)
+# print(object)
+createFeatures(object)
+#changeFeatures(object)
