@@ -9,4 +9,4 @@ Feature: Create test cases using Selenium
 		And : I Click on Submit button
 	Examples:
 		|Name|Email|Message|
-		|"Fergusjai"|"test@example.com22"|"I'm a frog"|
+		|"Ferguszz"|"test@example.com22"|"test message"|

@@ -9,7 +9,7 @@ Feature: Create output cases using Selenium
 		And : I Click on Submit button
 	Examples:
 		|Name|Email|Message|
-		|"Fergusssss"|"test@example.com22"|"I'm a frog"|
+		|"Fergusssss"|"test@example.com22"|"test message"|
 
 
 	@test_Chrome
@@ -17,7 +17,7 @@ Feature: Create output cases using Selenium
 		Given : I Click on Delete button with the "1"-th row 
 	Examples:
 		|Name|Email|Message|
-		|"Fergusssss"|"test@example.com22"|"I'm a frog"|
+		|"Fergusssss"|"test@example.com22"|"test message"|
 
 
 	@test_Firefox
@@ -29,7 +29,7 @@ Feature: Create output cases using Selenium
 		And : I Click on Submit button
 	Examples:
 		|Name|Email|Message|
-		|"Fergusssss"|"test@example.com22"|"I'm a frog"|
+		|"Fergusssss"|"test@example.com22"|"test message"|
 
 
 	@test_Edge
@@ -41,7 +41,7 @@ Feature: Create output cases using Selenium
 		And : I Click on Submit button
 	Examples:
 		|Name|Email|Message|
-		|"Fergusssss"|"test@example.com22"|"I'm a frog"|
+		|"Fergusssss"|"test@example.com22"|"test message"|
 
 
 	@test_Chrome
@@ -58,4 +58,4 @@ Feature: Create output cases using Selenium
 		And : Check the "1"-th row "<Name>", "<Email>", "<Message>"
 	Examples:
 		|Name|Email|Message|
-		|"Fergusssss"|"test@example.com22"|"I'm a frog"|
+		|"Fergusssss"|"test@example.com22"|"test message"|
