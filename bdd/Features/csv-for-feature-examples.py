@@ -50,32 +50,38 @@ def changeFeatures(object):
             feature.close()
 
 def createFeatures(object):
-    lineNumber = -1
     for key, value in object.items():
         count = 0
         filepath = "./" + key
-        scenarioAnchor = False
-        targetList = []
-        #writeFile = open(filepath+".feature", "w")
+        writeFile = open(filepath+".feature", "w")
+        has_title = False
         for line in value:
-            print(line)
-        #writeFile.writelines("Feature: ",value["Name"])
-        #writeFile.writelines()
-        #writeFile.writelines("")
-
-        #writeFile.close()
-            
-
-
-    
-                
-
-            
+            if not has_title:
+                writeFile.writelines("Feature: "+ line["Name"])
+                has_title = True
+            writeFile.writelines("\n")
+            writeFile.writelines("\n")
+            writeFile.writelines('\t@test_' + line['browser'] + "\n")
+            writeFile.writelines('\tScenario Outline: ' + line['Scenario'] + "\n")
+            writeFile.writelines('\t\tGiven : ' + line['Pre-step'] + "\n")
+            if(len(line["Another Step"].split(" And ")) > 1):
+                for li in line["Another Step"].split(" And "):
+                    writeFile.writelines('\t\tAnd : ' + li +"\n")
+            writeFile.writelines("\tExamples:\n")
+            targetExampleKeys = "\t\t|"
+            targetValueKeys = "\t\t|"
+            for l in line["Examples"].split(" AND "):
+                targetExampleKeys += l.split(" is ")[0] + "|"
+                targetValueKeys += l.split(" is ")[1] + "|"
+            writeFile.writelines(targetExampleKeys + "\n")
+            writeFile.writelines(targetValueKeys + "\n")
+        writeFile.close()
     return
 
 csvFilePath = r'test2.csv'
-
+print("Starting ...")
 object = changeToObject(csvFilePath)
 # print(object)
 createFeatures(object)
+print("CSV to Features files success!")
 #changeFeatures(object)
