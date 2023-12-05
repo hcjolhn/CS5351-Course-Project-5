@@ -1,0 +1,4 @@
+Features,Scenario,Examples,Pre-step,Another Step,Name,browser
+TestEmpty,Create a record with Chrome,"Name is ""Fergusssss"" AND Email is ""test@example.com22"" AND Message is ""test message""",I Click on Create button,"I Enter a ""<Name>"" in Name field And I Enter a ""<Email>"" in Email field And I Enter a ""<Message>"" in Message field And I Click on Submit button",Create output cases using Selenium,Chrome
+
+TestEmptyPass,Edit a record with Chrome,"Name is ""Fergusssss"" AND Email is ""test@example.com22"" AND Message is ""test message""","I Click on Edit button with the ""1""-th row ","I Clear Name field And I Clear Email field And I Clear Message field And I Enter a ""<Name>"" in Name field And I Enter a ""<Email>"" in Email field And I Enter a ""<Message>"" in Message field And I Click on Submit button And I Click on Back button And Check the ""1""-th row ""<Name>"", ""<Email>"", ""<Message>""",Create output cases using Selenium,Chrome
