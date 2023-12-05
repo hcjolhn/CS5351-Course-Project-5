@@ -1,2 +1,2 @@
 Features,Scenario,Examples
-TestCSV,Create a record with Firefox,"Name is ""Fergus"" AND Email is ""test@example.com"" AND Message is ""I'm a frog"""
+TestCSV,Create a record with Firefox,"Name is ""Fergus"" AND Email is ""test@example.com"" AND Message is ""Test Message"""
