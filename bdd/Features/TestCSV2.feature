@@ -1,5 +1,4 @@
 Feature: Create output cases using Selenium
-
 	@test_Chrome
 	Scenario Outline: Create a record with Chrome
 		Given : I Click on Create button
@@ -11,14 +10,12 @@ Feature: Create output cases using Selenium
 		|Name|Email|Message|
 		|"Fergusssss"|"test@example.com22"|"test message"|
 
-
 	@test_Chrome
 	Scenario Outline: Delete a record with Chrome
 		Given : I Click on Delete button with the "1"-th row 
 	Examples:
 		|Name|Email|Message|
 		|"Fergusssss"|"test@example.com22"|"test message"|
-
 
 	@test_Firefox
 	Scenario Outline: Create a record with Firefox
@@ -31,7 +28,6 @@ Feature: Create output cases using Selenium
 		|Name|Email|Message|
 		|"Fergusssss"|"test@example.com22"|"test message"|
 
-
 	@test_Edge
 	Scenario Outline: Create a record with Edge
 		Given : I Click on Create button
@@ -42,7 +38,6 @@ Feature: Create output cases using Selenium
 	Examples:
 		|Name|Email|Message|
 		|"Fergusssss"|"test@example.com22"|"test message"|
-
 
 	@test_Chrome
 	Scenario Outline: Edit a record with Chrome
